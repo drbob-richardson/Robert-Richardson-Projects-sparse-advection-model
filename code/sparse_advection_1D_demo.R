@@ -1,7 +1,6 @@
 #' Sparse Implied–Advection Utilities (1D demo)
 #'
 #' Self-contained helpers for the 1D implied-advection + NNGP example.
-#' No setwd(); no hidden globals. All inputs are explicit.
 #' Requires: Matrix, geoR, tmvtnorm
 #'
 
