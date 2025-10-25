@@ -9,7 +9,7 @@
 
 ## Overview
 
-Traditional dynamic spatio-temporal models are computationally expensive because each filtering step requires inverting dense \(n \times n\) covariance matrices, giving cubic time complexity \(O(n^3)\).  
+Traditional dynamic spatio-temporal models are computationally expensive because each filtering step requires inverting dense $n \times n$ covariance matrices, giving cubic time complexity $O(n^3)$.  
 
 This repository implements a **sparse, implied-advection dynamic model** that avoids dense matrix inversion entirely.  
 By combining:
@@ -18,7 +18,7 @@ By combining:
 - **Nearest Neighbor Gaussian Processes (NNGP)** to enforce sparsity in the precision matrix, and  
 - **Precision tapering** to maintain sparsity through time,
 
-the method achieves **near-linear scaling** in the number of spatial locations \(n\).
+the method achieves **near-linear scaling** in the number of spatial locations $n$.
 
 ---
 
@@ -34,15 +34,15 @@ Our approach replaces dense inversions with sparse updates, preserving model fid
 
 | Approach | Matrix Structure | Time Complexity | Memory Complexity | Comments |
 |-----------|------------------|-----------------|-------------------|-----------|
-| **Dense Kalman Filtering** | Full \(n \times n\) covariance | \(O(T\,n^3)\) | \(O(n^2)\) | Standard dynamic spatio-temporal model |
-| **Reduced-Rank Model** | Low-rank \(r \times r\) basis (\(r \ll n\)) | \(O(T(r^3 + n r^2))\) | \(O(r^2)\) | Requires dimension reduction |
-| **Sparse Implied-Advection + NNGP (this model)** | Sparse precision with \(m\) neighbors (\(m \ll n\)) | \(O(T\,n\,m^2)\) | \(O(n\,m)\) | No dimension reduction, near-linear scaling |
+| **Dense Kalman Filtering** | Full $n \times n$ covariance | $O(T\,n^3)$ | $O(n^2)$ | Standard dynamic spatio-temporal model |
+| **Reduced-Rank Model** | Low-rank $r \times r$ basis ($r \ll n$) | $O(T(r^3 + n r^2))$ | $O(r^2)$ | Requires dimension reduction |
+| **Sparse Implied-Advection + NNGP (this model)** | Sparse precision with $m$ neighbors ($m \ll n$) | $O(T\,n\,m^2)$ | $O(n\,m)$ | No dimension reduction, near-linear scaling |
 
-Here, \(T\) is the number of time points, \(n\) the number of spatial locations, and \(m\) the neighborhood size (typically 10–30).
+Here, $T$ is the number of time points, $n$ the number of spatial locations, and $m$ the neighborhood size (typically 10–30).
 
 > **In short:**  
-> The implied-advection NNGP model reduces the per-step cost from \(O(n^3)\) to \(O(n\,m^2)\),  
-> yielding **linear scalability in both space and time** for fixed \(m\).
+> The implied-advection NNGP model reduces the per-step cost from $O(n^3)$ to $O(n\,m^2)$,  
+> yielding **linear scalability in both space and time** for fixed $m$.
 
 ---
 
@@ -65,8 +65,8 @@ The sparse model shows superior fit (lower CRPS) with modest additional computat
 
 ## Key Techniques
 
-- **Implied Advection:** Backward differencing of the SPDE time derivative produces a *sparse inverse evolution matrix* \(G^{-1}\).  
-- **Nearest Neighbor Gaussian Process (NNGP):** Each location depends on a small neighborhood (\(m\)) → sparse precision matrix.  
+- **Implied Advection:** Backward differencing of the SPDE time derivative produces a *sparse inverse evolution matrix* $G^{-1}$.  
+- **Nearest Neighbor Gaussian Process (NNGP):** Each location depends on a small neighborhood ($m$) → sparse precision matrix.  
 - **Precision Tapering:** Re-projects the precision matrix back to the NNGP sparsity pattern at each time step to prevent fill-in.  
 - **Extended Kalman Filtering:** Enables nonlinear dynamics while preserving sparsity.  
 
