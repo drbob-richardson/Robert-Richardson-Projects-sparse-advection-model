@@ -25,7 +25,7 @@ the method achieves **near-linear scaling** in the number of spatial locations $
 ## Motivation
 
 Dynamic models in environmental and geophysical data analysis (e.g., SST forecasting, pollution transport) often involve tens of thousands of spatial points.  
-Even with reduced-rank methods, large matrix inversions dominate runtime.  
+Even with reduced-rank methods, large matrix inversions dominate runtime and reduced rank methods oversmooth, which leads to poor predictions. 
 Our approach replaces dense inversions with sparse updates, preserving model fidelity while dramatically lowering computational cost.
 
 ---
