@@ -36,7 +36,7 @@ Our approach replaces dense inversions with sparse updates, preserving model fid
 |-----------|------------------|-----------------|-------------------|-----------|
 | **Dense Kalman Filtering** | Full $n \times n$ covariance | $O(T\,n^3)$ | $O(n^2)$ | Standard dynamic spatio-temporal model |
 | **Reduced-Rank Model** | Low-rank $r \times r$ basis ($r \ll n$) | $O(T(r^3 + n r^2))$ | $O(r^2)$ | Requires dimension reduction |
-| **Sparse Implied-Advection + NNGP (this model)** | Sparse precision with $m$ neighbors ($m \ll n$) | $O(T\,n\,m^2)$ | $O(n\,m)$ | No dimension reduction, near-linear scaling |
+| **Sparse Implied-Advection + NNGP (this model)** | Sparse precision with $m$ neighbors ($m \ll n$) | $O(Tnm^2)$ | $O(nm)$ | No dimension reduction, near-linear scaling |
 
 Here, $T$ is the number of time points, $n$ the number of spatial locations, and $m$ the neighborhood size (typically 10–30).
 
