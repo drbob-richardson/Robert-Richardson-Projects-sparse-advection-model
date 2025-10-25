@@ -1,7 +1,6 @@
 #' SST 2D Sparse Implied–Advection Utilities
 #'
-#' Clean, GitHub-ready version of the 2D preprocessing + model helpers.
-#' No setwd(); no absolute paths; no hidden globals.
+#' 2D preprocessing + model helpers.
 #' Requires: Matrix, geoR, fields (optional plotting), tmvtnorm, ncdf4
 #'
 
