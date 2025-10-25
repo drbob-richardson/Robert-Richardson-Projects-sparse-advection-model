@@ -41,7 +41,7 @@ Our approach replaces dense inversions with sparse updates, preserving model fid
 Here, $T$ is the number of time points, $n$ the number of spatial locations, and $m$ the neighborhood size (typically 10–30).
 
 > **In short:**  
-> The implied-advection NNGP model reduces the per-step cost from $O(n^3)$ to $O(n\,m^2)$,  
+> The implied-advection NNGP model reduces the per-step cost from $O(n^3)$ to $O(nm^2)$,  
 > yielding **linear scalability in both space and time** for fixed $m$.
 
 ---
